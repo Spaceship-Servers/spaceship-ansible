@@ -1,0 +1,6 @@
+- name: Offboard users
+  user:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ offboarded_users }}"

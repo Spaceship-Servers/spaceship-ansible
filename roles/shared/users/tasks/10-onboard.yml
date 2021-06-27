@@ -1,0 +1,18 @@
+- name: Onboard sysadmins
+  user:
+    name: "{{ item.value.username }}"
+    comment: "{{ item.key }}"
+    shell: "{{ item.value.shell | default('/usr/bin/fish') }}"
+    groups: sudo
+    append: yes
+    state: present
+  with_dict:
+    - "{{ sysadmins }}"
+
+- name: Copy public keys
+  authorized_key:
+    user: "{{ item.value.username }}"
+    key: "{{ item.value.pubkeys | join('\n') }}"
+    state: present
+  with_dict:
+    - "{{ sysadmins }}"

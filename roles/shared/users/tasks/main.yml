@@ -1,0 +1,5 @@
+- name: Onboard users
+  include_tasks: 10-onboard.yml
+
+- name: Offboard users
+  include_tasks: 20-offboard.yml

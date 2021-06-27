@@ -1,0 +1,12 @@
+- hosts: gameservers
+  become: true
+  gather_facts: true
+  serial: "{{ serial | default(0) }}"
+  handlers:
+    - include: handlers/main.yml
+  roles:
+    - role: 'shared/users'
+      tags: users
+
+    # - role: gameserver
+    #   tags: gameserver
