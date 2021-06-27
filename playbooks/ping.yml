@@ -1,0 +1,5 @@
+- hosts:
+    - "{{ hostlist | default('all,!ungrouped') }}"
+  gather_facts: false
+  tasks:
+    - ping: # noqa unnamed-task

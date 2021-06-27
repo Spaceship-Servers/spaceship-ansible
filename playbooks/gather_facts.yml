@@ -1,0 +1,4 @@
+- hosts:
+    - "{{ hostlist | default('all,!other') }}"
+  gather_facts: true
+  tasks: []
