@@ -1,0 +1,11 @@
+exclude_paths:
+  - .git
+parseable: true
+use_default_rules: true
+verbosity: 1
+skip_list:
+  - 'no-changed-when' # Ignore argument creates or removes on command and shell
+  - 'risky-file-permissions' # File permissions not mentioned # Revisit this
+  - 'yaml'  # Violations reported by yamllint # Revisit this
+  - 'experimental'  # all rules tagged as experimental
+
