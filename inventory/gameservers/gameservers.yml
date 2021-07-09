@@ -5,10 +5,11 @@ gameservers:
         vin.servers.creators.tf:2222:
         la.servers.creators.tf:2222:
         chi.servers.creators.tf:2222:
-    # sa:
-    #   hosts:
-    #     brz.servers.creators.tf:2222:
     eu:
       hosts:
-        # eu1.servers.creators.tf:2222:
+        eu1.servers.creators.tf:2222:
         eu2.servers.creators.tf:2222:
+    oce:
+      hosts:
+        aus.servers.creators.tf:2222:
+        sgp.servers.creators.tf:2222:
