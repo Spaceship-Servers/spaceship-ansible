@@ -1,7 +1,7 @@
----
  - name: 
    hosts: gameservers
    become: true
+   gather_facts: false
    tasks: 
     - name: Ansible Update Cache and Upgrade all Packages
       register: updatesys
