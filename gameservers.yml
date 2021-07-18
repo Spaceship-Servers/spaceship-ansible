@@ -4,9 +4,15 @@
   serial: "{{ serial | default(0) }}"
   handlers:
     - include: handlers/main.yml
+  vars_files:
+    - vars/vault.yml
+    - vars/pterodactyl.yml
   roles:
     - role: 'shared/users'
       tags: users
 
     # - role: gameserver
     #   tags: gameserver
+
+    - role: wings
+      tags: wings

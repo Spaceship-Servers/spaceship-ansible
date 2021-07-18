@@ -1,0 +1,16 @@
+# - name: Fetch pterodactyl configutation
+#   fetch:
+#     src: /etc/pterodactyl/config.yml
+#     dest: roles/wings/files/{{ inventory_hostname }}/
+#     flat: true
+#     fail_on_missing: true
+
+- debug: var=inventory_hostname
+- debug: var=vault[inventory_hostname]
+- debug: var=pterodactyl[inventory_hostname]
+
+- name: Copy pterodactyl confiugration
+  template:
+    src: etc/pterodactyl/config.yml.j2
+    dest: /etc/pterodactyl/config.yml.test
+  # notify: timestamp
