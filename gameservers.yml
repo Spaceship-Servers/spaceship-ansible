@@ -11,8 +11,5 @@
     - role: 'shared/users'
       tags: users
 
-    # - role: gameserver
-    #   tags: gameserver
-
     - role: wings
       tags: wings

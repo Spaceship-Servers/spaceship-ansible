@@ -1,16 +1,14 @@
-# - name: Fetch pterodactyl configutation
-#   fetch:
-#     src: /etc/pterodactyl/config.yml
-#     dest: roles/wings/files/{{ inventory_hostname }}/
-#     flat: true
-#     fail_on_missing: true
+# UNTESTED
+# - import_tasks: 010-docker.yml
+#   tags: docker
 
-- debug: var=inventory_hostname
-- debug: var=vault[inventory_hostname]
-- debug: var=pterodactyl[inventory_hostname]
+# UNTESTED
+# - import_tasks: 020-wings.yml
+#   tags: wings
 
-- name: Copy pterodactyl confiugration
-  template:
-    src: etc/pterodactyl/config.yml.j2
-    dest: /etc/pterodactyl/config.yml.test
-  # notify: timestamp
+# WIP
+# - import_tasks: 030-config.yml
+#   tags: config
+
+- import_tasks: 031-config-docker.yml
+  tags: config

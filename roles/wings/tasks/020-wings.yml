@@ -1,0 +1,27 @@
+- name: Create directories for Wings
+  file:
+    path: /etc/pterodactyl
+    state: directory
+
+- name: Download Wings
+  get_url:
+    url: https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
+    dest: /usr/local/bin/wings
+    mode: 0744
+
+- name: Daemonise Wings
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+  with_items:
+    - etc/systemd/system/wings.service
+
+- name: Reload Systemd
+  systemd:
+    daemon_reexec: yes
+
+- name: Enable Wings
+  service:
+    name: wings
+    state: started
+    enabled: yes

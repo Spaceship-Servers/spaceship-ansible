@@ -1,0 +1,10 @@
+- name: Add github docker registry authentication
+  blockinfile:
+    path: /etc/pterodactyl/config.yml
+    marker: "# {mark} ANISBLE MANAGED BLOCK"
+    block: |
+      docker:
+        registries:
+          registry.example.com:
+            username: "registryusername"
+            password: "registrypassword"

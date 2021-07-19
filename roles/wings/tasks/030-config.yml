@@ -1,0 +1,7 @@
+- name: Copy pterodactyl configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}.test"
+  with_items:
+    - etc/pterodactyl/config.yml
+  # notify: timestamp
