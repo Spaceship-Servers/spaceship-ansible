@@ -4,4 +4,6 @@
     dest: "/{{ item }}.test"
   with_items:
     - etc/pterodactyl/config.yml
-  # notify: timestamp
+  notify:
+    - restart wings
+    # - timestamp

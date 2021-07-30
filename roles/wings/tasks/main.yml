@@ -1,11 +1,6 @@
-# UNTESTED
-# - import_tasks: 010-docker.yml
-#   tags: docker
-
-# UNTESTED
-# - import_tasks: 020-wings.yml
-#   tags: wings
+- import_tasks: 010-wings.yml
+  tags: wings-service
 
 # WIP
-# - import_tasks: 030-config.yml
-#   tags: config
+# - import_tasks: 020-config.yml
+#   tags: wings-config

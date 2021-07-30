@@ -20,7 +20,7 @@
   systemd:
     daemon_reexec: yes
 
-- name: Enable Wings
+- name: Start and Enable Wings
   service:
     name: wings
     state: started
