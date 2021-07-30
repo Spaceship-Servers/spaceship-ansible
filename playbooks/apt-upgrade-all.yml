@@ -1,9 +1,8 @@
- - name: 
-   hosts: gameservers
+ - hosts: gameservers
    become: true
    gather_facts: false
    tasks: 
-    - name: Ansible Update Cache and Upgrade all Packages
+    - name: Ansible Update Cache and Upgrade all Packages # noqa package-latest
       register: updatesys
       apt:
         name: "*"
@@ -12,4 +11,4 @@
 
     - name: Display the last line of the previous task to check the stats
       debug:
-        msg:  "{{updatesys.stdout_lines|last}}"
+        msg:  "{{ updatesys.stdout_lines|last }}"
