@@ -1,0 +1,4 @@
+- name: restart wings
+  service:
+    name: wings
+    state: restarted

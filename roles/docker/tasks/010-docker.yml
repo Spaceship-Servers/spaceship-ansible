@@ -19,7 +19,7 @@
     filename: docker
     state: present
     update_cache: true
-  no_log: true
+  # no_log: true
 
 - name: Install Docker
   apt:
@@ -29,7 +29,7 @@
       - containerd.io
     state: present
 
-- name: Enable Docker
+- name: Start and Enable Docker
   service:
     name: docker
     state: started

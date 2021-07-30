@@ -1,0 +1,2 @@
+- import_tasks: 010-docker.yml
+  tags: docker-install
