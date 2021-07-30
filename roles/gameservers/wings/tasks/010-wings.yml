@@ -19,9 +19,4 @@
 - name: Reload Systemd
   systemd:
     daemon_reexec: yes
-
-- name: Start and Enable Wings
-  service:
-    name: wings
-    state: started
-    enabled: yes
+  tags: molecule-notest

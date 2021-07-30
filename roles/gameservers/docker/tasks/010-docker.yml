@@ -7,6 +7,7 @@
       - gnupg
       - lsb-release
     state: present
+    update_cache: yes
 
 - name: Add Docker repository key
   apt_key:
@@ -19,7 +20,6 @@
     filename: docker
     state: present
     update_cache: true
-  # no_log: true
 
 - name: Install Docker
   apt:

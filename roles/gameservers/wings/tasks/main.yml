@@ -4,3 +4,9 @@
 # WIP
 # - import_tasks: 020-config.yml
 #   tags: wings-config
+
+- name: Start and Enable Wings
+  service:
+    name: wings
+    state: started
+    enabled: yes
