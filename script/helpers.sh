@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Shared variable initialisation
+debug=${debug:-false}
+VERBOSE=""
+
 # Colours
 BLACK=$(tput setaf 0)
 RED=$(tput setaf 1)
@@ -11,34 +15,26 @@ CYAN=$(tput setaf 6)
 WHITE=$(tput setaf 7)
 RESET=$(tput sgr0)
 
-error()
-{
+error() {
     echo "${RED}[ERROR] ${1} ${RESET}"
 }
 
-warn()
-{
+warn() {
     echo "${YELLOW}[WARN] ${1} ${RESET}"
 }
 
-important()
-{
+important() {
     echo "${PURPLE}[IMPORTANT] ${1} ${RESET}"
 }
 
-ok()
-{
+ok() {
     echo "${GREEN}[OK] ${1} ${RESET}"
 }
 
-info()
-{
+info() {
     echo "${BLU}[INFO] ${1} ${RESET}"
 }
 
-debug()
-{
-    if ${ctf_show_debug}; then
-        echo "${CYAN}[DEBUG] ${1} ${RESET}"
-    fi
+debug() {
+    ${debug} && echo "${CYAN}[DEBUG] ${1} ${RST}"
 }

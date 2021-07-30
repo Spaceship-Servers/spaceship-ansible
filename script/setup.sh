@@ -10,10 +10,9 @@ COMMAND=${1}
 usage() {
     echo "Usage: ./script/setup"
     echo "  help:    Shows this message"
-    echo "  <blank>: Installs pip3+ansible"
     echo "  pip3:    Installs pip3 only"
     echo "  ansible: Installs/updates ansible only"
-    echo "  "
+    echo ""
     exit 1
 }
 
@@ -45,7 +44,7 @@ case "${COMMAND}" in
     ""|pip3)
         info "Installing/updating pip3"
         install_pip3
-        ;&
+        ;;
     ""|ansible)
         info "Installing/updating anisble"
         install_ansible 

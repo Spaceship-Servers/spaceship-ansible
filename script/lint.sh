@@ -13,14 +13,17 @@ usage(){
 # Input check
 [[ -n ${1} ]] && usage
 
+# Debug mode
+${debug} && { VERBOSE="-v"; }
+debug "Running on debug mode"
+
 # Fun begins here ↓
 if ! which ansible-lint &>/dev/null; then
     error "ansible-lint is not installed, run the setup script first"
-    show "./script/setup"
+    echo "./script/setup"
     exit 1
 fi
 
 info "Running ansible-lint using our own custom rules"
-# This is to exclude any roles installed by ansible-galaxy from our linting process
-ansible-lint --exclude=~/.ansible/
+ansible-lint ${VERBOSE} --exclude=~/.ansible/
 [[ $? -eq 0 ]] && ok "linting successfull" || error "linting failted"
