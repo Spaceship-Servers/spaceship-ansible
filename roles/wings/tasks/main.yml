@@ -9,6 +9,3 @@
 # WIP
 # - import_tasks: 030-config.yml
 #   tags: config
-
-- import_tasks: 031-config-docker.yml
-  tags: config
