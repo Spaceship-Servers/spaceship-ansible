@@ -1,0 +1,18 @@
+- name: update pterodactyl wings
+  hosts: all
+  become: true
+  tasks:
+  - name: download wings
+    ansible.builtin.uri:
+      url: https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
+      dest: /usr/local/bin/wings
+      force: yes
+      status_code: 200, 304
+  - name: chmod +x
+    ansible.builtin.file:
+      dest: /usr/local/bin/wings
+      mode: a+x
+  - name: restart wings daemon
+    ansible.builtin.service:
+      name: wings
+      state: restarted
