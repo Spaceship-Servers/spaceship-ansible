@@ -8,8 +8,8 @@
     - role: 'shared/users'
       tags: users
 
-    - role: 'gameservers/docker'
-      tags: wings
+    - role: 'shared/docker'
+      tags: docker
 
     - role: 'gameservers/wings'
       tags: wings
