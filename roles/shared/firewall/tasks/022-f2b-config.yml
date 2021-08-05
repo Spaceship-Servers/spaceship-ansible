@@ -1,3 +1,13 @@
+- name: Ensure auth log exists
+  file:
+    path: /var/log/auth.log
+    # owner: syslog
+    # group: adm
+    # mode: 0640
+    access_time: preserve
+    modification_time: preserve
+    state: touch
+
 - name: Configure fail2ban
   copy:
     src: "{{ item }}"
@@ -6,4 +16,3 @@
     - etc/fail2ban/jail.d/sshd.conf
   notify:
     - reload fail2ban
-
