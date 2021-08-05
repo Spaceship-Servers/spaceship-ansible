@@ -10,3 +10,4 @@
     name: wings
     state: started
     enabled: yes
+  tags: molecule-notest
