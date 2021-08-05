@@ -1,0 +1,17 @@
+- name: Install base packages
+  apt:
+    name:
+      - git
+      - mosh
+      - netcat
+      - tmate
+    state: latest
+    update_cache: yes
+
+- name: Install shells
+  apt:
+    name:
+      - fish
+      - zsh
+    state: present
+    update_cache: yes

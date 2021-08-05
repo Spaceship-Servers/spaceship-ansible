@@ -1,0 +1,11 @@
+# - name: Add ppa key
+#   apt_key:
+#     keyserver: keyserver.ubuntu.com
+#     id: E1DD270288B4E6030699E45FA1715D88E1DF1F24
+#     state: present
+
+- name: Add git-core ppa
+  apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+    update_cache: yes

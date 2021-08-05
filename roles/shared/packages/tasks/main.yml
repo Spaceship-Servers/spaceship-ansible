@@ -1,0 +1,5 @@
+- import_tasks: 010-repositories.yml
+  tags: repositories, repos
+
+- import_tasks: 020-packages.yml
+  tags: packages
