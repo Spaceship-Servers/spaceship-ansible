@@ -1,0 +1,6 @@
+- name: Install UFW and fail2ban
+  apt:
+    name:
+      - fail2ban
+      - ufw
+    state: present

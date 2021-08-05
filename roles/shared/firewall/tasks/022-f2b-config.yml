@@ -1,0 +1,9 @@
+- name: Configure fail2ban
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+  with_items:
+    - etc/fail2ban/jail.d/ssh.conf
+  notify:
+    - reload fail2ban
+
