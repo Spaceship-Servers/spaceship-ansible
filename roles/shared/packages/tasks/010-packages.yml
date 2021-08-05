@@ -1,11 +1,11 @@
 - name: Install base packages
   apt:
     name:
-      - git
+      - gnupg2
       - mosh
       - netcat
       - tmate
-    state: latest
+    state: present
     update_cache: yes
 
 - name: Install shells
