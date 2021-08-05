@@ -8,8 +8,14 @@
     - role: 'shared/users'
       tags: users
 
+    - role: 'shared/packages'
+      tags: packages
+
     - role: 'shared/docker'
       tags: docker
 
     - role: 'gameservers/wings'
       tags: wings
+
+    - role: 'shared/firewall'
+      tags: firewall

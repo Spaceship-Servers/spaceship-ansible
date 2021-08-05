@@ -5,12 +5,6 @@
       - mosh
       - netcat
       - tmate
-    state: present
-    update_cache: yes
-
-- name: Install shells
-  apt:
-    name:
       - fish
       - zsh
     state: present
