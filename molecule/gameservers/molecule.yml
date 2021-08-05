@@ -1,0 +1,22 @@
+driver:
+  name: docker
+platforms:
+  - name: molecule-gameserver
+    groups:
+      - gameservers
+    image: ubuntu:20.04
+    pre_build_image: false
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ../../gameservers.yml
+scenario:
+  test_sequence:
+    - destroy
+    - syntax
+    - create
+    - converge
+    - idempotence
+    # - verify
+    - destroy
+
