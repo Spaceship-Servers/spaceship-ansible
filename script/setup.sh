@@ -12,6 +12,8 @@ usage() {
     echo "  help:    Shows this message"
     echo "  pip3:    Installs pip3 only"
     echo "  ansible: Installs/updates ansible only"
+    echo "---"
+    echo "  if no argument is passed, then pip3 and ansible are installed"
     echo ""
     exit 1
 }
@@ -44,7 +46,7 @@ case "${COMMAND}" in
     ""|pip3)
         info "Installing/updating pip3"
         install_pip3
-        ;;
+        ;&
     ""|ansible)
         info "Installing/updating anisble"
         install_ansible 
