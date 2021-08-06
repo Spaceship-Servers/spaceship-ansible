@@ -14,7 +14,6 @@ usage() {
     echo "  ansible: Installs/updates ansible only"
     echo "---"
     echo "  if no argument is passed, then pip3 and ansible are installed"
-    echo ""
     exit 1
 }
 

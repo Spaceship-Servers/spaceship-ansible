@@ -7,5 +7,5 @@
   apt:
     name:
       - git
-    state: latest
+    state: latest # noqa package-latest
     update_cache: yes
