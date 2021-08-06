@@ -1,6 +1,6 @@
 sysadmins:
   steph:
-  username: steph
+    username: steph
     pubkeys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPg1kuwZUZ8Ko6Cc9y2ivQbddEvNQQGW98oqkOhLtUKb
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBEeLy1ZKspQy4u+CPfhTPUtTQ0Oj2H8SWIAetunsL/K
