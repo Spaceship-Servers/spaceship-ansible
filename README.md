@@ -1,6 +1,6 @@
 # C.TF Servers - Ansible
 
-Supported OS: Debian and Ubuntu (so far)
+Supported OS: Debian and Ubuntu (so far).
 
 ## Quick start guide
 Install pip3 and ansible using:
@@ -32,7 +32,7 @@ AtoZ playbooks are located in the root of the repository. While AdHoc are locate
 
 As the name implies, these playbooks provision a new server from scratch.
 ```
-gameservers.yml:        WIP:  Installs and configure pterodactyl.
+gameservers.yml:        Installs and configure docker, ufw, users and pterodactyl.
 ```
 
 ### AdHoc
@@ -45,7 +45,7 @@ apt-upgrade-all.yml:    Wrapper fot `apt update && apt upgrade`
 
 ## Roles
 
-WIP: Idea is to have one main role per type of server (ie. gameservers) and then shared roles for common tasks among roles.
+Idea is to have one main role per type of server (ie. gameservers) and then shared roles for common tasks among roles.
 
 Main roles are located in the `roles/` directory while the shared roles are in `roles/shared/` 
 
@@ -55,9 +55,7 @@ WIP: To be defined as needed.
 
 ## Handlers
 
-WIP: To be defined as needed.
-
-Handlers should be defined in the `handlers/<type>.yml` file which is read by the `handlers/main.yml`. The latter can be included by any playbook.
+Handlers should be defined in the `handlers/<type>.yml` file which is read by the `handlers/main.yml`. The latter can be included by any playbook and we want all handlers to be shared everywhere.
 
 ---
 
