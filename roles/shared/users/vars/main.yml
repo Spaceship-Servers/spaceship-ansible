@@ -1,4 +1,9 @@
 sysadmins:
+  steph:
+    username: steph
+    pubkeys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPg1kuwZUZ8Ko6Cc9y2ivQbddEvNQQGW98oqkOhLtUKb
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBEeLy1ZKspQy4u+CPfhTPUtTQ0Oj2H8SWIAetunsL/K
   invader:
     username: invaderctf
     pubkeys:
@@ -22,9 +27,9 @@ sysadmins:
     pubkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDcWL3MfQH4GX48p1LloKeErYDpnS4LtM6VHt/XkxhNUbefgY6CAqu77LUijMyoSlBl7Msy51FMsrcCCakGCUoafKVqfM/0ieJv5hMLhOVgjew7bZ6r7Pfulm0910ryE4chnESairmTxYyU3J/oAxK7CEr7LOAF2i55QQrCTCxRMTqVARbvEDW/7WZa9syjNg8jAAvNLvJjuHgJRm9ABD1PsHqrGId8zrxyZ8HFGSMTxJ53kRq5eUNw8jvAVr3nsdEXlZtO43BGikMhtv9vIaXGJTTCQuPvHlptEy6lvAHw3Ku+rUmurZrzPGu5elTv1+tTNVT/RIGgmcoATinYDuOr1nURWaBMjTblti4P0fbtJW1JXqGX6mp35OtURhW5jyfCFPHc5q5M6gPaFi7ofWiOfLlLhqBFgQxINHLQjWDcLn+vc4mwgu7I7QBVcRO5NyUyMSyMaWNrzTnaRfJjCH49LnI+0nYCGQ1PR6hi/iT/A/RhGnNM+OujiUCLMgKe2Zs=
   frey:
-    username: freylint
+    username: frey
     pubkeys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzPd+uYWQTFSVAMuLrU5hqDCTEtI1UVijD08JPUn9DF gen@gen-gdw
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzPd+uYWQTFSVAMuLrU5hqDCTEtI1UVijD08JPUn9DF
 
 offboarded_users:
   - rip
