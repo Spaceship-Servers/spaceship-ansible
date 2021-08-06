@@ -21,6 +21,10 @@ sysadmins:
     username: tzlil
     pubkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDcWL3MfQH4GX48p1LloKeErYDpnS4LtM6VHt/XkxhNUbefgY6CAqu77LUijMyoSlBl7Msy51FMsrcCCakGCUoafKVqfM/0ieJv5hMLhOVgjew7bZ6r7Pfulm0910ryE4chnESairmTxYyU3J/oAxK7CEr7LOAF2i55QQrCTCxRMTqVARbvEDW/7WZa9syjNg8jAAvNLvJjuHgJRm9ABD1PsHqrGId8zrxyZ8HFGSMTxJ53kRq5eUNw8jvAVr3nsdEXlZtO43BGikMhtv9vIaXGJTTCQuPvHlptEy6lvAHw3Ku+rUmurZrzPGu5elTv1+tTNVT/RIGgmcoATinYDuOr1nURWaBMjTblti4P0fbtJW1JXqGX6mp35OtURhW5jyfCFPHc5q5M6gPaFi7ofWiOfLlLhqBFgQxINHLQjWDcLn+vc4mwgu7I7QBVcRO5NyUyMSyMaWNrzTnaRfJjCH49LnI+0nYCGQ1PR6hi/iT/A/RhGnNM+OujiUCLMgKe2Zs=
+  frey:
+    username: freylint
+    pubkeys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzPd+uYWQTFSVAMuLrU5hqDCTEtI1UVijD08JPUn9DF gen@gen-gdw
 
 offboarded_users:
   - rip
