@@ -1,18 +1,55 @@
 - name: Configure UFW
-  debug:
-    msg: todo
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+  with_items:
+    - etc/ufw/after.rules
+  notify:
+    - restart ufw
 
-# sudo systemctl restart ufw
-# sudo ufw allow https
-# sudo ufw allow http
-# sudo ufw allow mosh
-# sudo ufw allow 2222
-# sudo ufw allow 8080
-# sudo ufw default deny incoming
-# sudo ufw default allow outgoing
-# sudo ufw enable
-# sudo ufw route allow 27000:27100/udp
-# sudo ufw route allow from 178.33.236.38
-# sudo ufw route allow https
-# sudo ufw route allow http
-# sudo ufw route allow mysql
+# Ensure ufw is restarted before proceeding
+- meta: flush_handlers # noqa unnamed-task
+
+- name: Allow rules
+  ufw:
+    port: "{{ item }}"
+    direction: outgoing
+    policy: allow
+  with_items:
+    - http
+    - https
+    - mosh
+    - 2222
+    - 8080
+
+- name: Deny rules
+  ufw:
+    direction: incoming
+    policy: deny
+
+- name: Allow routed ports
+  ufw:
+    direction: routed
+    port: "{{ item }}"
+    policy: allow
+  with_items:
+    - http
+    - https
+    - mysql
+
+- name: Allow routed udp
+  ufw:
+    direction: routed
+    port: 27000:27100
+    proto: udp
+    policy: allow
+
+- name: Allow from ip
+  ufw:
+    direction: routed
+    from_ip: 178.33.236.38
+    policy: allow
+
+- name: Enable rules
+  ufw:
+    state: enabled
