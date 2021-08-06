@@ -17,5 +17,8 @@
     - role: 'gameservers/wings'
       tags: wings
 
+    - role: 'gameservers/runner'
+      tags: runner
+
     - role: 'shared/firewall'
       tags: firewall
