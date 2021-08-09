@@ -1,6 +1,6 @@
 # C.TF Servers - Ansible
 
-Supported OS: Debian and Ubuntu (so far)
+Supported OS: Debian and Ubuntu (so far).
 
 ## Quick start guide
 Install pip3 and ansible using:
@@ -20,6 +20,25 @@ Check your ssh connectivity:
 
 Notice that Ansible relies on your `~/.ssh/config` file. If you can ssh to the target servers, you're good to go.
 
+## Usage
+To provision a brand new server from scratch:
+
+1. Make sure you can ssh as root.
+1. Add the server to the inventory file.
+1. `ansible-playbook gameservers.yml --limit=[name of the new server]`.
+  * I recommend to use `--limit` to not make changes on any other server.
+
+### Pro-tips
+* You can execute just certain parts of a playbook using `--tags=[tag]`
+  * Check the `yml` files for tag definitions, or run `ansible-playbook gameservers.yml --list-tags` to get a full list.
+* You can add the flags `--diff` for a more verbose output.
+* If you're getting ssh timeout errors, try reducing your number of forks on `ansible.cfg`.
+* If you're getting "variable not defined errors" make sure your facts are up to date.
+  1. `rm -rf /tmp/facts_cache`
+  1. `ansible-playbook playbooks/gather_facts.yml`
+
+---
+
 # Ansible components
 
 ## Playbooks
@@ -32,7 +51,7 @@ AtoZ playbooks are located in the root of the repository. While AdHoc are locate
 
 As the name implies, these playbooks provision a new server from scratch.
 ```
-gameservers.yml:        WIP:  Installs and configure pterodactyl.
+gameservers.yml:        Installs and configure docker, ufw, users and pterodactyl.
 ```
 
 ### AdHoc
@@ -45,7 +64,7 @@ apt-upgrade-all.yml:    Wrapper fot `apt update && apt upgrade`
 
 ## Roles
 
-WIP: Idea is to have one main role per type of server (ie. gameservers) and then shared roles for common tasks among roles.
+Idea is to have one main role per type of server (ie. gameservers) and then shared roles for common tasks among roles.
 
 Main roles are located in the `roles/` directory while the shared roles are in `roles/shared/` 
 
@@ -55,9 +74,7 @@ WIP: To be defined as needed.
 
 ## Handlers
 
-WIP: To be defined as needed.
-
-Handlers should be defined in the `handlers/<type>.yml` file which is read by the `handlers/main.yml`. The latter can be included by any playbook.
+Handlers should be defined in the `handlers/<type>.yml` file which is read by the `handlers/main.yml`. The latter can be included by any playbook and we want all handlers to be shared everywhere.
 
 ---
 

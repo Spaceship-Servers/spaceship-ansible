@@ -1,0 +1,14 @@
+- name: reload fail2ban
+  service:
+    name: fail2ban
+    state: reloaded
+
+- name: restart ufw
+  service:
+    name: ufw
+    state: restarted
+
+- name: restart wings
+  service:
+    name: wings
+    state: restarted

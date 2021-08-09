@@ -1,0 +1,11 @@
+- name: Install base packages
+  apt:
+    name:
+      - gnupg2
+      - mosh
+      - netcat
+      - tmate
+      - fish
+      - zsh
+    state: present
+    update_cache: yes

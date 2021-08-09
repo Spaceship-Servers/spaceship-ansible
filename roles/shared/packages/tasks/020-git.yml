@@ -1,0 +1,11 @@
+- name: Add git-core ppa
+  apt_repository:
+    repo: ppa:git-core/ppa
+    state: present
+
+- name: Install git
+  apt:
+    name:
+      - git
+    state: latest # noqa package-latest
+    update_cache: yes

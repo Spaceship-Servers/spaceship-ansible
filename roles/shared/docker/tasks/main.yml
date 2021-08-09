@@ -1,0 +1,8 @@
+- import_tasks: 010-install.yml
+  tags: docker-install
+
+- name: Start and Enable Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes

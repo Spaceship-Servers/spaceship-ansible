@@ -10,10 +10,10 @@ COMMAND=${1}
 usage() {
     echo "Usage: ./script/setup"
     echo "  help:    Shows this message"
-    echo "  <blank>: Installs pip3+ansible"
     echo "  pip3:    Installs pip3 only"
     echo "  ansible: Installs/updates ansible only"
-    echo "  "
+    echo "---"
+    echo "  if no argument is passed, then pip3 and ansible are installed"
     exit 1
 }
 
