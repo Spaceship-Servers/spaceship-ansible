@@ -1,0 +1,25 @@
+// {{ ansible_managed }}
+
+{# This will run apt update every 1 day #}
+APT::Periodic::Update-Package-Lists "1";
+{# This will run apt upgrade every 1 day #}
+APT::Periodic::Unattended-Upgrade "1";
+
+Unattended-Upgrade::Allowed-Origins {
+  "${distro_id}:${distro_codename}-security";
+  "${distro_id}:${distro_codename}-updates";
+};
+
+{# Populate a healthy blocklist on roles/shared/unattended-upgrades/vars/main.yml #}
+Unattended-Upgrade::Package-Blacklist {
+{% for package in unattended_upgrades.blocklist %}
+  "{{ package }}";
+{% endfor %}
+};
+
+{# So it won't fill the /boot partition #}
+Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+Unattended-Upgrade::DevRelease "false";
+{# So it won't reboot automatically if needed #}
+Unattended-Upgrade::Automatic-Reboot "false";

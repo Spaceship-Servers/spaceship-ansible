@@ -22,3 +22,6 @@
 
     - role: 'shared/firewall'
       tags: firewall
+
+    - role: 'shared/unattended-upgrades'
+      tags: unattended-upgrades

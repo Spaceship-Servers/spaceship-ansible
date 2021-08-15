@@ -1,5 +1,2 @@
 - import_tasks: 010-packages.yml
   tags: packages
-
-- import_tasks: 020-git.yml
-  tags: git

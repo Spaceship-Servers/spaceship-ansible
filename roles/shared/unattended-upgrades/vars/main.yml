@@ -1,0 +1,6 @@
+unattended_upgrades:
+  # List of packages to exclude, you can use regex
+  blocklist:
+    - docker.*
+    - linux.*
+    - nginx.*
