@@ -1,6 +1,7 @@
 - name: Install base packages
   apt:
     name:
+      - git
       - gnupg2
       - mosh
       - netcat
