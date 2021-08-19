@@ -13,15 +13,15 @@
 - name: Allow rules
   ufw:
     port: "{{ item }}"
-    direction: outgoing
+    direction: incoming
     policy: allow
   with_items:
     - http
     - https
     - mosh
     - ssh
-    - 2222
-    - 8080
+    - '2222'
+    - '8080'
 
 - name: Deny rules
   ufw:
