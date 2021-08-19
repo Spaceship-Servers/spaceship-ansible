@@ -19,6 +19,7 @@
     - http
     - https
     - mosh
+    - ssh
     - 2222
     - 8080
 
