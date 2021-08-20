@@ -1,4 +1,18 @@
-- name: Configure UFW
+- name: Reset UFW rules
+  community.general.ufw:
+    state: reset
+
+
+- name: Reset UFW rules
+  community.general.ufw:
+    state: reset
+
+- name: Turn off UFW
+  service:
+    name: ufw
+    state: stopped
+
+- name: Configure UFW-DOCKER
   copy:
     src: "{{ item }}"
     dest: "/{{ item }}"
@@ -7,50 +21,117 @@
   notify:
     - restart ufw
 
+
+# RELOAD IT
+
+# This is *needed* because otherwise rules get cleared and not readded to iptables' INPUT
+- name: UFW RELOAD
+  community.general.ufw:
+    state: reloaded
+
+
 # Ensure ufw is restarted before proceeding
 - meta: flush_handlers # noqa unnamed-task
 
-- name: Allow rules
-  ufw:
-    port: "{{ item }}"
-    direction: incoming
-    policy: allow
-  with_items:
-    - http
-    - https
-    - mosh
-    - ssh
-    - '2222'
-    - '8080'
+- name: UFW allow ssh
+  community.general.ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+    comment: 'ssh'
 
-- name: Deny rules
-  ufw:
-    direction: incoming
-    policy: deny
+- name: UFW allow ssh 2222
+  community.general.ufw:
+    rule: allow
+    port: '2222'
+    proto: tcp
+    comment: 'ssh alt'
 
-- name: Allow routed ports
-  ufw:
-    direction: routed
-    port: "{{ item }}"
-    policy: allow
-  with_items:
-    - http
-    - https
-    - mysql
+- name: UFW allow http
+  community.general.ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+    comment: 'http'
+
+
+- name: UFW allow https
+  community.general.ufw:
+    rule: allow
+    port: '443'
+    proto: tcp
+    comment: 'https'
+
+- name: UFW allow mosh
+  community.general.ufw:
+    rule: allow
+    port: 60000:61000
+    proto: udp
+    comment: 'mosh'
+
+- name: UFW allow 8443
+  community.general.ufw:
+    rule: allow
+    port: '8443'
+    proto: tcp
+    comment: 'pterodactyl https'
+
+- name: Allow from backend
+  community.general.ufw:
+    rule: allow
+    from_ip: 178.33.236.38
+    comment: 'backend ip'
+
+
+# ROUTED
+
+- name: Allow routed http
+  community.general.ufw:
+    rule: allow
+    route: yes
+    port: '80'
+    proto: tcp
+    comment: 'connplex/motd http'
+
+- name: Allow routed https
+  community.general.ufw:
+    rule: allow
+    route: yes
+    port: '443'
+    proto: tcp
+    comment: 'connplex/motd https'
 
 - name: Allow routed udp
-  ufw:
-    direction: routed
-    port: 27000:27100
+  community.general.ufw:
+    rule: allow
+    route: yes
+    port: 27000:28015
     proto: udp
-    policy: allow
+    comment: 'gameserver ports'
 
-- name: Allow from ip
-  ufw:
-    direction: routed
+- name: Allow routed from backend
+  community.general.ufw:
+    rule: allow
+    route: yes
     from_ip: 178.33.236.38
-    policy: allow
+    comment: 'backend ip'
 
-- name: Enable rules
-  ufw:
+# DEFAULTS
+
+- name: Default allow outgoing
+  community.general.ufw:
+    default: allow
+    direction: outgoing
+
+- name: Default deny incoming
+  community.general.ufw:
+    default: deny
+    direction: incoming
+
+# RESTART IT
+
+- name: Enable rules and restart UFW
+  community.general.ufw:
     state: enabled
+  notify:
+    - restart ufw

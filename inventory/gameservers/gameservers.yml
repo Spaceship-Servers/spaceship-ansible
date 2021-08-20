@@ -4,11 +4,15 @@ gameservers:
       hosts:
         vin.servers.creators.tf:2222:
         la.servers.creators.tf:2222:
+        dedi.sappho.io:22:
+          ansible_user: steph
+          become: root
     eu:
       hosts:
         eu1.servers.creators.tf:2222:
         eu.servers.creators.tf:2222:
-          ansible_user: root
+          ansible_user: steph
+          become: root
     oce:
       hosts:
         aus.servers.creators.tf:2222:
