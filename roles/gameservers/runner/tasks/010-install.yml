@@ -40,11 +40,19 @@
   become_user: root
   raw: gitlab-runner install -u="gitlab-runner" -d="/home/gitlab-runner/"
 
+- name: Add gitlab runner to ptero so it can run in the ptero folders
+  become_user: root
+  raw: usermod -a -G pterodactyl gitlab-runner
+
+- name: Remove .bash_logout from gitlab runner home
+  become_user: root
+  raw: rm /home/gitlab-runner/.bash_logout || true
+
 - name: systemd daemon_reload
   ansible.builtin.systemd:
     daemon_reload: yes
 
-- name: systemd daemon_reload
+- name: systemd restart gitlab-runner
   ansible.builtin.systemd:
     state: restarted
     name: gitlab-runner
