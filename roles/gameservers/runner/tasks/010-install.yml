@@ -9,6 +9,8 @@
   command: bash /tmp/script.deb.sh
   tags: install-gitlab-runner
 
+# need an apt update here
+
 - name: Apt Install GitLab Runner
   apt:
     name:
@@ -16,13 +18,25 @@
     state: present
     update_cache: yes
 
+
+# TODO: this needs to not be repeated code
+# steph
+- name: Ansible Update Cache and Upgrade all Packages
+  register: updatesys
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: Display the last line of the previous task to check the stats
+  debug:
+    msg:  "{{ updatesys.stdout_lines|last }}"
+
+
 - name: Uninstall any existing GitLab Runner Service
   become_user: root
-  ansible.builtin.shell: |
-  gitlab-runner uninstall
+  raw: gitlab-runner uninstall
 
 - name: Install GitLab Runner as a systemd service
   become_user: root
-  ansible.builtin.shell: |
-  gitlab-runner install -u=gitlab-runner
-
+  raw: gitlab-runner install -u=gitlab-runner
