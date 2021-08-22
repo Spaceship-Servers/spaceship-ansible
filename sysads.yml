@@ -2,8 +2,12 @@ sysadmins:
   steph:
     username: steph
     pubkeys:
+      # wsl
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPg1kuwZUZ8Ko6Cc9y2ivQbddEvNQQGW98oqkOhLtUKb
+      # spaceship box
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBEeLy1ZKspQy4u+CPfhTPUtTQ0Oj2H8SWIAetunsL/K
+      # droplet
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKIjMyoWAH4fHUgIO5a397MXp+0PaM0CvYyLP/CnHoIX
   invader:
     username: invaderctf
     pubkeys:

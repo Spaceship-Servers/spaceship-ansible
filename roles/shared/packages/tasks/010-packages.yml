@@ -1,14 +1,29 @@
 - name: Install base packages
   apt:
     name:
+      # duh
       - git
+      # duh
       - gnupg2
+      # mobile ssh
       - mosh
+      # duh
       - netcat
+      # its like screen but not what your grandpa used
       - tmux
+      # for sharing terminal sessions
       - tmate
+      # for johnny
       - fish
+      # for steph
       - zsh
+      # for iptables srcds hardening script
       - net-tools
+      # for pterodactyl
+      - certbot
+      # for discord webhooks + ci
+      - jq
+      # might need a flag
+      - iptables-persistent
     state: present
     update_cache: yes

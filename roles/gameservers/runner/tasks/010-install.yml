@@ -32,11 +32,19 @@
   debug:
     msg:  "{{ updatesys.stdout_lines|last }}"
 
-
 - name: Uninstall any existing GitLab Runner Service
   become_user: root
   raw: gitlab-runner uninstall
 
 - name: Install GitLab Runner as a systemd service
   become_user: root
-  raw: gitlab-runner install -u=gitlab-runner
+  raw: gitlab-runner install -u="gitlab-runner" -d="/home/gitlab-runner/"
+
+- name: systemd daemon_reload
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: systemd daemon_reload
+  ansible.builtin.systemd:
+    state: restarted
+    name: gitlab-runner
