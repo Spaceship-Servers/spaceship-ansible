@@ -7,11 +7,22 @@
 
 - name: Execute GitLab Runner installation script
   command: bash /tmp/script.deb.sh
-  tags: molecule-idempotence-notest
+  tags: install-gitlab-runner
 
-- name: Install GitLab Runner
+- name: Apt Install GitLab Runner
   apt:
     name:
       - gitlab-runner
     state: present
     update_cache: yes
+
+- name: Uninstall any existing GitLab Runner Service
+  become_user: root
+  ansible.builtin.shell: |
+  gitlab-runner uninstall
+
+- name: Install GitLab Runner as a systemd service
+  become_user: root
+  ansible.builtin.shell: |
+  gitlab-runner install -u=gitlab-runner
+
