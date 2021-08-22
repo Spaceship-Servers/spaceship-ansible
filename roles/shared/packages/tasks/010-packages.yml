@@ -5,8 +5,10 @@
       - gnupg2
       - mosh
       - netcat
+      - tmux
       - tmate
       - fish
       - zsh
+      - net-tools
     state: present
     update_cache: yes
