@@ -25,5 +25,7 @@
       - jq
       # might need a flag
       - iptables-persistent
+      # helps a lot with lowering tick stutter
+      - linux-image-rt-amd64
     state: present
     update_cache: yes

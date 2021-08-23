@@ -36,17 +36,21 @@
   become_user: root
   raw: gitlab-runner uninstall
 
-- name: Install GitLab Runner as a systemd service
+- name: Create pterodactyl home directory for gitlab-runner
   become_user: root
-  raw: gitlab-runner install -u="gitlab-runner" -d="/home/gitlab-runner/"
+  raw: ( mkdir /home/pterodactyl && chmod 755 /home/pterodactyl chown pterodactyl:pterodactyl /home/pterodactyl ) || true
 
-- name: Add gitlab runner to ptero so it can run in the ptero folders
+- name: Install GitLab Runner as a systemd service under pterodactyl's user
+  become_user: root
+  raw: gitlab-runner install -u="pterodactyl" -d="/home/pterodactyl/"
+
+- name: Add ptero to gitlab runner group
+  become_user: root
+  raw: usermod -a -G gitlab-runner pterodactyl
+
+- name: Add gitlab runner to ptero group
   become_user: root
   raw: usermod -a -G pterodactyl gitlab-runner
-
-- name: Remove .bash_logout from gitlab runner home
-  become_user: root
-  raw: rm /home/gitlab-runner/.bash_logout || true
 
 - name: systemd daemon_reload
   ansible.builtin.systemd:
