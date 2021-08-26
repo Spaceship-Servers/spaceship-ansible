@@ -32,9 +32,18 @@
   debug:
     msg:  "{{ updatesys.stdout_lines|last }}"
 
+- name: systemd stop gitlab-runner
+  ansible.builtin.systemd:
+    state: stopped
+    name: gitlab-runner
+
 - name: Uninstall any existing GitLab Runner Service
   become_user: root
   raw: gitlab-runner uninstall
+
+- name: Delete any existing GitLab Runner Service
+  become_user: root
+  raw: rm /etc/systemd/system/gitlab-runner.service
 
 - name: Create pterodactyl user manually
   become_user: root
