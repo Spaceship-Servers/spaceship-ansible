@@ -6,10 +6,7 @@ gameservers:
         la.servers.creators.tf:2222:
     eu:
       hosts:
-        eu1.servers.creators.tf:2222:
         eu.servers.creators.tf:2222:
-          ansible_user: steph
-          become: root
     oce:
       hosts:
         aus.servers.creators.tf:2222:

@@ -32,26 +32,31 @@
   debug:
     msg:  "{{ updatesys.stdout_lines|last }}"
 
-- name: systemd stop gitlab-runner
-  ansible.builtin.systemd:
-    state: stopped
-    name: gitlab-runner
+- name: Stop gitlab-runner
+  systemd:
+     name: gitlab-runner
+     state: stopped
+  ignore_errors: yes
 
 - name: Uninstall any existing GitLab Runner Service
   become_user: root
   raw: gitlab-runner uninstall
+  ignore_errors: yes
 
 - name: Delete any existing GitLab Runner Service
   become_user: root
   raw: rm /etc/systemd/system/gitlab-runner.service
+  ignore_errors: yes
 
 - name: Create pterodactyl user manually
   become_user: root
-  raw: useradd --system --no-create-home --shell /usr/sbin/nologin pterodactyl;
+  raw: useradd --system --no-create-home --shell /usr/sbin/nologin pterodactyl
+  ignore_errors: yes
 
 - name: Create pterodactyl home directory for gitlab-runner
   become_user: root
-  raw: ( mkdir /home/pterodactyl && chmod 755 /home/pterodactyl chown pterodactyl:pterodactyl /home/pterodactyl ) || true
+  raw: ( mkdir /home/pterodactyl && chmod 755 /home/pterodactyl chown pterodactyl:pterodactyl /home/pterodactyl )
+  ignore_errors: yes
 
 - name: Install GitLab Runner as a systemd service under pterodactyl's user
   become_user: root
@@ -65,9 +70,11 @@
   become_user: root
   raw: usermod -a -G pterodactyl gitlab-runner
 
-- name: systemd daemon_reload
+- name: reload systemd
   ansible.builtin.systemd:
     daemon_reload: yes
+    state: restarted
+    name: gitlab-runner
 
 - name: systemd restart gitlab-runner
   ansible.builtin.systemd:
