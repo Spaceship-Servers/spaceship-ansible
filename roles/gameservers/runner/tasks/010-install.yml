@@ -36,6 +36,10 @@
   become_user: root
   raw: gitlab-runner uninstall
 
+- name: Create pterodactyl user manually
+  become_user: root
+  raw: useradd --system --no-create-home --shell /usr/sbin/nologin pterodactyl;
+
 - name: Create pterodactyl home directory for gitlab-runner
   become_user: root
   raw: ( mkdir /home/pterodactyl && chmod 755 /home/pterodactyl chown pterodactyl:pterodactyl /home/pterodactyl ) || true
