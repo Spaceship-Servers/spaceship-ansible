@@ -70,6 +70,11 @@
   become_user: root
   raw: usermod -a -G pterodactyl gitlab-runner
 
+# awful
+- name: Enable git lfs for pterodactyl
+  become_user: root
+  raw: sudo -u pterodactyl git lfs install
+
 - name: reload systemd
   ansible.builtin.systemd:
     daemon_reload: yes
