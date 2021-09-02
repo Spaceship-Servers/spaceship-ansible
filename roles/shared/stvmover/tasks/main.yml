@@ -1,0 +1,20 @@
+- import_tasks: 010-install.yml
+  tags: firewall-install, f2b-install, ufw-install, ipt-config
+
+- import_tasks: 021-ufw-config.yml
+  tags: ufw-config
+
+- import_tasks: 022-f2b-config.yml
+  tags: f2b-config
+
+- import_tasks: 023-srcds-ipt-config.yml
+  tags: ipt-config
+
+- name: Start and Enable fail2ban and ufw
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - fail2ban
+    - ufw

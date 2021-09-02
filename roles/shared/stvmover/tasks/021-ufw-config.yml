@@ -1,0 +1,19 @@
+- name: Download H5AI
+
+
+
+- name: Delete old nginx cfgs
+  raw: rm -rfv /etc/nginx/sites-enabled/*
+
+- name: Copy Nginx CFG
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+  with_items:
+    - etc/nginx/sites-enabled/stvmover-and-netdata
+
+- name: Reload nginx
+  community.general.ufw:
+    state: restarted
+
+

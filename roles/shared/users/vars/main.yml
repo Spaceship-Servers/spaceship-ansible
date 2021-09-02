@@ -7,7 +7,7 @@ sysadmins:
       # spaceship box
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBEeLy1ZKspQy4u+CPfhTPUtTQ0Oj2H8SWIAetunsL/K
       # droplet
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKIjMyoWAH4fHUgIO5a397MXp+0PaM0CvYyLP/CnHoIX
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPwwHjyWJKzSw7mDJnhlRGuAiRfLrqwLDw30eZEDqYY4
   invader:
     username: invaderctf
     pubkeys:
@@ -43,5 +43,5 @@ sysadmins:
 
 offboarded_users:
 #  - moonly
-#  - rekt
+  - rekt
 #  - press_f

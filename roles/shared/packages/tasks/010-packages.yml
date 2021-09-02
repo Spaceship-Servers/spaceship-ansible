@@ -29,5 +29,7 @@
       - linux-image-rt-amd64
       # helps a lot with lowering tick stutter
       - git-lfs
+      # curl
+      - curl
     state: present
     update_cache: yes

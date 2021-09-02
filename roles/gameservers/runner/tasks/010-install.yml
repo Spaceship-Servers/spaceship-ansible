@@ -55,7 +55,7 @@
 
 - name: Create pterodactyl home directory for gitlab-runner
   become_user: root
-  raw: ( mkdir /home/pterodactyl && chmod 755 /home/pterodactyl chown pterodactyl:pterodactyl /home/pterodactyl )
+  raw: ( mkdir /home/pterodactyl && chmod 775 /home/pterodactyl && chown pterodactyl:pterodactyl /home/pterodactyl )
   ignore_errors: yes
 
 - name: Install GitLab Runner as a systemd service under pterodactyl's user
