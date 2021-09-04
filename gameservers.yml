@@ -11,6 +11,9 @@
     - role: 'shared/packages'
       tags: packages
 
+    - role: 'shared/netdata'
+      tags: netdata
+
     - role: 'shared/docker'
       tags: docker
 

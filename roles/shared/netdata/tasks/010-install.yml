@@ -1,0 +1,7 @@
+# ugly
+- name: Download Netdata
+  raw: curl -Ss https://my-netdata.io/kickstart.sh -o kickstart.sh
+
+- name: Install Netdata
+  raw: bash kickstart.sh --dont-wait --stable-channel --disable-telemetry
+  become_user: root

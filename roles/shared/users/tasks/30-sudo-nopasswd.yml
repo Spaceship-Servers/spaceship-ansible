@@ -1,0 +1,8 @@
+- name: Allow 'sudo' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+
+# https://gist.github.com/acsrujan/1e647a864375c00025e4ca7d53770168
