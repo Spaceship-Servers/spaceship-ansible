@@ -2,7 +2,7 @@
   user:
     name: "{{ item.value.username }}"
     comment: "{{ item.key }}"
-    shell: "{{ item.value.shell | default('/usr/bin/bash') }}"
+    shell: "{{ item.value.shell | default('/bin/bash') }}"
     groups: sudo
     append: yes
     state: present

@@ -3,3 +3,9 @@
 
 - name: Offboard users
   include_tasks: 20-offboard.yml
+
+- name: Enable Passwdless Sudo
+  include_tasks: 30-sudo-nopasswd.yml
+
+- name: Disable Passworded and root login
+  include_tasks: 40-nopasswd-ssh.yml
