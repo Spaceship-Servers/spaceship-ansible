@@ -1,9 +1,11 @@
 - name: Download Netdata
-  get_url: https://my-netdata.io/kickstart.sh
-  dest: /tmp/kickstart.sh
-  mode: 0500
+  get_url:
+    url: https://my-netdata.io/kickstart.sh
+    dest: /tmp/kickstart.sh
+    mode: 0500
 
 # If netdata is already installed, then this won't run again
 - name: Install Netdata
   command: /tmp/kickstart.sh --dont-wait --stable-channel --disable-telemetry
-  creates: /usr/sbin/netdata
+  args:
+    creates: /usr/sbin/netdata

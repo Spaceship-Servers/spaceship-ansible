@@ -2,6 +2,7 @@
   copy:
     src: etc/nginx/sites-enabled/netdata-and-demos
     dest: /etc/nginx/sites-enabled/netdata-and-demos
+  notify: restart nginx
 
 - name: Empty /var/www/html/ directory
   file:
@@ -12,3 +13,5 @@
   file:
     path: /var/www/demos
     state: directory
+
+- meta: flush_handlers # noqa unnamed-task

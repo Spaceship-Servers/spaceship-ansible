@@ -31,5 +31,7 @@
       - git-lfs
       # curl
       - curl
+      - zip
+      - unzip
     state: present
     update_cache: yes
