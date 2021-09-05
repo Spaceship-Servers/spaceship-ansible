@@ -8,6 +8,7 @@
     url: "{{ item }}"
     dest: /opt/scripts/
     mode: '0500'
+    force: yes
   with_items:
     - https://raw.githubusercontent.com/CreatorsTF/srcds-hardening-iptables-docker/main/ipt.sh
     - https://raw.githubusercontent.com/CreatorsTF/stvmover/main/stvmover.sh
