@@ -1,0 +1,5 @@
+- import_tasks: 010-script.yml
+  tags: cronjob-script
+
+- import_tasks: 020-crontab.yml
+  tags: cronjob-crontab

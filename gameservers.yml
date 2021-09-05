@@ -14,6 +14,9 @@
     - role: 'shared/netdata'
       tags: netdata
 
+    - role: 'shared/cronjob'
+      tags: cronjob
+
     - role: 'shared/docker'
       tags: docker
 
