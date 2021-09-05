@@ -1,5 +1,5 @@
-# - import_tasks: 010-php8.yml
-#   tags: netdata_php8
+- import_tasks: 010-php8.yml
+  tags: netdata_php8
 
 - import_tasks: 020-nginx.yml
   tags: netdata_nginx
