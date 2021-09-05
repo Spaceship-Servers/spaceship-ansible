@@ -7,6 +7,8 @@ gameservers:
     eu:
       hosts:
          139.59.135.178:2222:
+         135.125.188.102:2222:
+             ansible_user: debian
 #        eu.servers.creators.tf:2222:
 #        178.33.236.38:2222:
     oce:
