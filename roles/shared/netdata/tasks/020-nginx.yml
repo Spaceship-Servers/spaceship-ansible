@@ -1,0 +1,23 @@
+- name: Install nginx
+  apt:
+    name:
+      - nginx
+    state: present
+
+- name: Copy nginx config
+  copy:
+    src: etc/nginx/sites-enabled/netdata-and-demos
+    dest: /etc/nginx/sites-enabled/netdata-and-demos
+  notify: restart nginx
+
+- name: Empty /var/www/html/ directory
+  file:
+    path: /var/www/html
+    state: absent
+
+- name: Create demos directory
+  file:
+    path: /var/www/demos
+    state: directory
+
+- meta: flush_handlers # noqa unnamed-task
