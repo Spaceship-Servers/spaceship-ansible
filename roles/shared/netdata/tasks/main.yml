@@ -1,11 +1,12 @@
-- import_tasks: 010-php8.yml
-  tags: netdata_php8
+# - import_tasks: 010-php8.yml
+#   tags: netdata_php8
 
-- import_tasks: 020-h5ai.yml
+- import_tasks: 020-nginx.yml
+  tags: netdata_nginx
+
+- import_tasks: 030-h5ai.yml
   tags: netdata_h5ai
 
-- import_tasks: 030-netdata.yml
+- import_tasks: 040-netdata.yml
   tags: netdata_netdata
 
-- import_tasks: 040-nginx.yml
-  tags: netdata_nginx
