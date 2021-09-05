@@ -3,9 +3,7 @@
     url: https://my-netdata.io/kickstart.sh
     dest: /tmp/kickstart.sh
     mode: 0500
+    force: yes
 
-# If netdata is already installed, then this won't run again
 - name: Install Netdata
   command: /tmp/kickstart.sh --dont-wait --stable-channel --disable-telemetry
-  args:
-    creates: /usr/sbin/netdata
