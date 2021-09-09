@@ -1,0 +1,17 @@
+- import_tasks: 010-php8.yml
+  tags: php8
+
+- import_tasks: 020-nginx.yml
+  tags: nginx-cfg
+
+- import_tasks: 030-h5ai.yml
+  tags: h5ai
+
+- import_tasks: 040-netdata.yml
+  tags: netdata
+
+- import_tasks: 050-ntop.yml
+  tags: ntop
+
+- import_tasks: 100-flush-nginx.yml
+  tags: flush-nginx

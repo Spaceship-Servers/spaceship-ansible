@@ -5,6 +5,12 @@ upstream netdata
     keepalive 64;
 }
 
+upstream ntop_srv
+{
+    server 127.0.0.1:3000;
+    keepalive 64;
+}
+
 server
 {
     # nginx listens to this
@@ -23,6 +29,18 @@ server
     gzip_proxied any;
     gzip_types *;
 
+    # NTOP
+    location /ntop
+    {
+        return 301 /ntop/;
+    }
+
+    location /ntop/
+    {
+        proxy_pass http://ntop_srv;
+    }
+
+    # NETDATA
     location ~ /netdata/(?<ndpath>.*)
     {
         proxy_redirect off;
@@ -62,3 +80,4 @@ server
         deny all;
     }
 }
+

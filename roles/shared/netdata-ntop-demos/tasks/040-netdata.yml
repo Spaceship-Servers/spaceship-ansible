@@ -7,3 +7,4 @@
 
 - name: Install Netdata
   command: /tmp/kickstart.sh --dont-wait --stable-channel --disable-telemetry
+

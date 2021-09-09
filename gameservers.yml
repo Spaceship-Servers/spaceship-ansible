@@ -12,14 +12,14 @@
     - role: 'shared/packages'
       tags: packages
 
-    - role: 'shared/netdata'
-      tags: netdata
+    - role: 'shared/docker'
+      tags: docker
+
+    - role: 'shared/netdata-ntop-demos'
+      tags: nginx
 
     - role: 'shared/cronjob'
       tags: cronjob
-
-    - role: 'shared/docker'
-      tags: docker
 
     - role: 'gameservers/wings'
       tags: wings

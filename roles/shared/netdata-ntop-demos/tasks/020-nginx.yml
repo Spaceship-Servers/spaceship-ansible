@@ -4,10 +4,13 @@
       - nginx
     state: present
 
+- name: Wipe old nginx cfgs
+  shell: /bin/rm -rf /etc/nginx/sites-enabled/*
+
 - name: Copy nginx config
   copy:
-    src: etc/nginx/sites-enabled/netdata-and-demos
-    dest: /etc/nginx/sites-enabled/netdata-and-demos
+    src: etc/nginx/sites-enabled/localproxies
+    dest: /etc/nginx/sites-enabled/localproxies
   notify: restart nginx
 
 - name: Empty /var/www/html/ directory
@@ -20,4 +23,4 @@
     path: /var/www/demos
     state: directory
 
-- meta: flush_handlers # noqa unnamed-task
+# - meta: flush_handlers # noqa unnamed-task

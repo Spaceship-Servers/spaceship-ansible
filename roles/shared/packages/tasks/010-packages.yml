@@ -17,6 +17,7 @@
       - mosh  # for ssh
       - net-tools # for iptables srcds hardening script
       - netcat
+      - python3-docker # for ansible
       - software-properties-common
       - tmate
       - tmux  
