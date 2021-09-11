@@ -23,11 +23,6 @@ sysadmins:
     pubkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQgb28ld4waILFfYH3BavGObsfhJhuwuC81jyKGnz3lIzNUTHuaSLVHlpXqhTrbIAihSUf7yYc5GvNIj1fRbi7jRrGip9HS16RhrbSCYVL11wOcAIIdZIqkgAG5VQSFX64VdAoXzbjtKsqOsaRhWxfr923lf5+jk+IO1R5IHWCNnV3Jpk3IostWxcC5GO/7FaP1nvClyp21btfNjzQ3UWXyZDYe58GzsYIjgMSCYzV8XNCw/V8lnNalp8p/kpqJMQw0/nHBupOEIu6MfHQ5P8EW9WywDoIylznFUAO96aKSGQNe/un6tlpMzLJ0SDD3tWmsKTqpUMvAYA5r9ix1DC9U8puCkTi1F8pGloMJkVt3BwiT4uP7e05OYu27YBKhvUCmMvIhmOnKPLceoXRj0IIAH5ktEyX/j8PLkUOFpfiQiJcKA6un905eMYw3+m/vB1LlkPboOA5bAlJVoRWhwZj6sHeksfwCw2ILyOfFJ5hytsqBSXilNf9I5F8VNsch6s= rob53@Roberts-PC
       - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEApMGtgH2pzR/VP9iC3/N70LfT+jt2LPOa5FHxiqWCXdywAQckjBgJlyh7jOl8KPmadArpHljRHBmcKrV2MN5Be5p1eTTvTWZOKdPP+aySFKNUy281T8p0YVEOgxcb2sl9V3AshQXSwPHFjtS54RueZg3eXmeWqCPAcGw0/x++g3xIRwaEQb+FsxCORMiCwvSuDqaQwFlXttUjxNcfkHFVoR5B0uLGGb0mVM+ZtjDjghZ1ul6JdFhvFuTc/LOZLWTlNMwswahqe/1CzlLKE5y+KWc3Ep9ytHLMinYfdnRi5dA7URjNgLErVk08R1tQUj+iBIRIR8Z7rbhj+uUDiEWJdw=
-
-  moonly:
-    username: moonly
-    pubkeys:
-      -  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJum7RW6hTY2SfFjYcVzKO9eb4s0vMw3Mfv/Dxs3Kpl0
   tzlil:
     username: tzlil
     pubkeys:
@@ -42,6 +37,4 @@ sysadmins:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQChtPkgujXmiRUFUb1MiPVElwQ4AsD1Ae+2Q9f8XyjOqwp7s8t6Uh06ZJlFoEzJVsWmenF+jhK0ICRwinG3yOmIjO1LoP1QOXA4Udgwy7HAPJJQTuYX8zYlroVd8mend4iu090x8Fgs9o2qTd6oemgPjXw+VFPkiwQNVCllRUPWT6+YtyvL20rNOBwGctkZgGFIKylSNsOhSnZYvppY3lPNMhlGjBjgmhQL9hFLl9iIIK8mnGve8oQk7zSBRw/gfSaLCCa6BnjiLMvK0dRZb2RfiwGyEniL1zUqw3bwE5ABAQPV4PgfWRXynC/phmwtgRzra3sc6eMFCIHu0UOFeST0K6SZsxI2k+YdCbAYfs6Dnr1pJHn+kscdntKQlIQmIhogbQ7gu1+/B1uvfWPE0aKvMx9qeMoCFxMP/Cq1zyqS/PvcZp9j4qSL1SXt3D/2nu15Yc++GMRYiChTmlhZ/tx7GOz0+vPoxgMtR5eGJWsBOinrW575poOfE6JMhFRaAGc=
 
 offboarded_users:
-#  - moonly
-  - rekt
-#  - press_f
+  - moonly
