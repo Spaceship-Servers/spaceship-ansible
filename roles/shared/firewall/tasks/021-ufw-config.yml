@@ -5,12 +5,12 @@
 - name: Setup UFW-DOCKER
   synchronize:
     dest_port:  2222
+    # so ufw doesn't whine abt perms
     archive: no
     src: "{{ item }}"
     dest: "/{{ item }}"
   with_items:
     - etc/ufw/after.rules
-  # so ufw doesn't whine
   become: true
 
 # RELOAD IT

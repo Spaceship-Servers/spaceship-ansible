@@ -73,7 +73,7 @@
 # awful
 - name: Enable git lfs for pterodactyl
   become_user: root
-  raw: sudo -u pterodactyl git lfs install
+  raw: git lfs install --system
 
 - name: reload systemd
   ansible.builtin.systemd:
