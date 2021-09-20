@@ -31,5 +31,9 @@
       - git-lfs
       # curl
       - curl
+      # neovim
+      - neovim
+      # htop
+      - htop
     state: present
     update_cache: yes
