@@ -1,0 +1,26 @@
+- name: Install nginx
+  apt:
+    name:
+      - nginx
+    state: present
+
+- name: Wipe old nginx cfgs
+  shell: /bin/rm -rf /etc/nginx/sites-enabled/*
+
+- name: Copy nginx config
+  copy:
+    src: etc/nginx/sites-enabled/localproxies
+    dest: /etc/nginx/sites-enabled/localproxies
+  notify: restart nginx
+
+- name: Empty /var/www/html/ directory
+  file:
+    path: /var/www/html
+    state: absent
+
+- name: Create demos directory
+  file:
+    path: /var/www/demos
+    state: directory
+
+# - meta: flush_handlers # noqa unnamed-task

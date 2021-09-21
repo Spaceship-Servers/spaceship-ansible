@@ -2,36 +2,41 @@
   community.general.ufw:
     state: reset
 
-
-- name: Reset UFW rules
-  community.general.ufw:
-    state: reset
-
-- name: Turn off UFW
-  service:
-    name: ufw
-    state: stopped
-
-- name: Configure UFW-DOCKER
-  copy:
+- name: Setup UFW-DOCKER
+  synchronize:
+    dest_port:  2222
+    # so ufw doesn't whine abt perms
+    archive: no
     src: "{{ item }}"
     dest: "/{{ item }}"
   with_items:
     - etc/ufw/after.rules
-  notify:
-    - restart ufw
-
+  become: true
 
 # RELOAD IT
-
 # This is *needed* because otherwise rules get cleared and not readded to iptables' INPUT
 - name: UFW RELOAD
   community.general.ufw:
     state: reloaded
 
+- name: temp allow incoming
+  community.general.ufw:
+    default: allow
+    direction: incoming
 
-# Ensure ufw is restarted before proceeding
-- meta: flush_handlers # noqa unnamed-task
+- name: Allow routed udp
+  community.general.ufw:
+    rule: allow
+    route: yes
+    port: 27000:28015
+    proto: udp
+    comment: 'gameserver ports'
+
+- name: Enable rules and restart UFW
+  community.general.ufw:
+    state: enabled
+  notify:
+    - restart ufw
 
 - name: UFW allow ssh
   community.general.ufw:
@@ -46,6 +51,8 @@
     port: '2222'
     proto: tcp
     comment: 'ssh alt'
+
+
 
 - name: UFW allow http
   community.general.ufw:
@@ -82,6 +89,12 @@
     from_ip: 178.33.236.38
     comment: 'backend ip'
 
+- name: Allow from worker
+  community.general.ufw:
+    rule: allow
+    from_ip: 95.179.216.28
+    comment: 'worker ip'
+
 
 # ROUTED
 
@@ -101,20 +114,19 @@
     proto: tcp
     comment: 'connplex/motd https'
 
-- name: Allow routed udp
-  community.general.ufw:
-    rule: allow
-    route: yes
-    port: 27000:28015
-    proto: udp
-    comment: 'gameserver ports'
-
 - name: Allow routed from backend
   community.general.ufw:
     rule: allow
     route: yes
     from_ip: 178.33.236.38
     comment: 'backend ip'
+
+- name: Allow routed from backend
+  community.general.ufw:
+    rule: allow
+    route: yes
+    from_ip: 95.179.216.28
+    comment: 'worker ip'
 
 # DEFAULTS
 

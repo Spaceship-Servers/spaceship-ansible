@@ -1,15 +1,13 @@
 - name: Ensure auth log exists
   file:
     path: /var/log/auth.log
-    # owner: syslog
-    # group: adm
-    # mode: 0640
     access_time: preserve
     modification_time: preserve
     state: touch
 
 - name: Configure fail2ban
-  copy:
+  synchronize:
+    dest_port:  2222
     src: "{{ item }}"
     dest: "/{{ item }}"
   with_items:
@@ -17,4 +15,6 @@
     - etc/fail2ban/jail.d/ssh-ufw-log.conf
   notify:
     - restart fail2ban
+  become: true
+
 

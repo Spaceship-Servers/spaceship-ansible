@@ -1,6 +1,7 @@
-- name: Install UFW and fail2ban
+- name: Install UFW and fail2ban and rsync
   apt:
     name:
       - fail2ban
       - ufw
+      - rsync
     state: present

@@ -1,0 +1,161 @@
+##########
+# netdata
+##########
+upstream netdata
+{
+        # netdata instance is listening to this
+        server 127.0.0.1:19999;
+        keepalive 64;
+}
+
+##########
+# ntop
+##########
+upstream ntop_srv
+{
+        # ntop docker is listening to this
+        server 127.0.0.1:3000;
+        keepalive 64;
+}
+
+##########
+# webcon
+##########
+
+# map these uris to             these ports
+map $request_uri                $mapped_port
+{
+    ~/webcon/01                 27015;
+    ~/webcon/02                 27017;
+    ~/webcon/03                 27019;
+    ~/webcon/04                 27021;
+    ~/webcon/05                 27023;
+    ~/webcon/06                 27025;
+    ~/webcon/07                 27027;
+    ~/webcon/08                 27029;
+}
+
+# map the ports we just mapped thru uris to ips as well
+map $mapped_port                $mapped_ip
+{
+    27015                       172.18.0.2;
+    27017                       172.18.0.3;
+    27019                       172.18.0.4;
+    27021                       172.18.0.5;
+    27023                       172.18.0.6;
+    27025                       172.18.0.7;
+    27027                       172.18.0.8;
+    27029                       172.18.0.9;
+}
+
+
+server
+{
+        # nginx listens to this
+        listen 80 default_server;
+
+        # listen to everything
+        server_name _;
+
+        # return if not cloudflare
+        if ($http_cf_ray = "")
+        {
+            return 444;
+        }
+
+        # compress as much shit as we can
+        gzip on;
+        gzip_proxied any;
+        gzip_types *;
+
+
+        ##########
+        # WEBCONN
+        ##########
+
+        # redir no slash
+        location ~ ^/webcon/\d\d/sprayviewer$
+        {
+            return 302 $request_uri/;
+        }
+
+        # 403 landing page because it's broken
+        location ~ ^/webcon/\d\d/?$
+        {
+            return 403;
+        }
+
+        # ?
+        location ~ ^/webcon/\d\d/?
+        {
+                rewrite ^/webcon/\d\d/?(.*) /$1 break;
+                # DONT let users inject headers into our app please
+                # https://stackoverflow.com/a/48709976
+                proxy_pass_request_headers off;
+                proxy_pass http://$mapped_ip:$mapped_port$uri;
+        }
+
+        ##########
+        # NETDATA
+        ##########
+
+        # redir no slash
+        location /netdata
+        {
+                return 301 /netdata/;
+        }
+        # proxy to our netdata instance
+        location ~ /netdata/(?<ndpath>.*)
+        {
+                proxy_redirect off;
+                proxy_set_header Host $host;
+
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_set_header X-Forwarded-Server $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_http_version 1.1;
+                proxy_pass_request_headers on;
+                proxy_set_header Connection "keep-alive";
+                proxy_store off;
+                proxy_pass http://netdata/$ndpath$is_args$args;
+
+        }
+
+        ##########
+        # NTOP
+        ##########
+
+        # redir no slash
+        location /ntop
+        {
+                return 301 /ntop/;
+        }
+
+        # proxy to our docker container
+        location /ntop/
+        {
+                proxy_pass http://ntop_srv;
+        }
+
+        ##########
+        # DEMOS
+        ##########
+
+        root /var/www/demos/;
+
+        # h5ai
+        index index.php index.html index.htm index.nginx-debian.html /_h5ai/public/index.php;
+        error_page 404 500 =301 https://$host;
+
+        location ~ \.php$
+        {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix://var/run/php/php8.0-fpm.sock;
+                fastcgi_read_timeout 10;
+        }
+
+        location ~ /\.ht
+        {
+                deny all;
+        }
+}

@@ -1,5 +1,6 @@
 - hosts: gameservers
   become: true
+  become_user: root
   gather_facts: true
   serial: "{{ serial | default(0) }}"
   handlers:
@@ -11,11 +12,14 @@
     - role: 'shared/packages'
       tags: packages
 
-    - role: 'shared/netdata'
-      tags: netdata
-
     - role: 'shared/docker'
       tags: docker
+
+    - role: 'shared/netdata-ntop-demos'
+      tags: nginx
+
+    - role: 'shared/cronjob'
+      tags: cronjob
 
     - role: 'gameservers/wings'
       tags: wings

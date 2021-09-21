@@ -1,0 +1,20 @@
+- name: Setup NTOP container
+  community.docker.docker_container:
+    name: ntopng
+    image: ntop/ntopng:stable
+    state: started
+    recreate: yes
+    exposed_ports:
+      - "3000:3000"
+    network_mode: host
+    restart_policy: always
+    command: "--http-prefix=\"/ntop\" --disable-login=1 --community"
+
+# sudo docker run -d --name=ntopng        \
+#     -p 3000:3000                        \
+#     --net=host                          \
+#     --restart always                    \
+#     ntop/ntopng:stable                  \
+#     --community                         \
+#     --http-prefix="/ntop"               \
+#     --disable-login=1

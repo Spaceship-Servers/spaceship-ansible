@@ -1,13 +1,2 @@
-- name: Get SrcDS hardening tool
-  get_url:
-    url: https://raw.githubusercontent.com/CreatorsTF/srcds-hardening-iptables-docker/main/ipt.sh
-    dest: /tmp/ipt.sh
-    mode: 0755
-
 - name: Execute SrcDS hardening tool
-  shell: /tmp/ipt.sh
-
-- name: Remove SrcDS hardening tool
-  file:
-    path: /tmp/ipt.sh
-    state: absent
+  shell: /opt/scripts/ipt.sh

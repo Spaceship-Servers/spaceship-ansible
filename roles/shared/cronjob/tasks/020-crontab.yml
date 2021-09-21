@@ -1,0 +1,9 @@
+- name: Setup hourly cronjobs
+  cron:
+    name: "{{ item.name }}"
+    job: "/opt/scripts/{{ item.script }}"
+    special_time: hourly
+    state: present
+  with_items:
+    - { name: "iptables hardening", script: "ipt.sh" }
+    - { name: "stvmover", script: "stvmover.sh" }
