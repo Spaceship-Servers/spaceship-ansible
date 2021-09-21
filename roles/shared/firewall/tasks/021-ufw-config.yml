@@ -89,6 +89,12 @@
     from_ip: 178.33.236.38
     comment: 'backend ip'
 
+- name: Allow from worker
+  community.general.ufw:
+    rule: allow
+    from_ip: 95.179.216.28
+    comment: 'worker ip'
+
 
 # ROUTED
 
@@ -114,6 +120,13 @@
     route: yes
     from_ip: 178.33.236.38
     comment: 'backend ip'
+
+- name: Allow routed from backend
+  community.general.ufw:
+    rule: allow
+    route: yes
+    from_ip: 95.179.216.28
+    comment: 'worker ip'
 
 # DEFAULTS
 
