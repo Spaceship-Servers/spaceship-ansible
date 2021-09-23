@@ -1,0 +1,2 @@
+- import_tasks: 010-disable-ipv6.yml
+  tags: sysctl-disable-ipv6
