@@ -7,7 +7,3 @@ gameservers:
     eu:
       hosts:
         eu.servers.creators.tf:2222:
-    oce:
-      hosts:
-        aus.servers.creators.tf:2222:
-        sgp.servers.creators.tf:2222:
