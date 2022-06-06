@@ -2,11 +2,5 @@ gameservers:
   children:
     na:
       hosts:
-#        cl1.sappho.io:2222:
-#          ansible_user: sappho
-#        192.248.182.224:2222:
-#          ansible_user: root
-#        143.244.160.215:2222:
-#          ansible_user: root
-        172.107.202.62:2222:
+        1.2.3.4:2222:
           ansible_user: steph
