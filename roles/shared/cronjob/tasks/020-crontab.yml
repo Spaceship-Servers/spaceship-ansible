@@ -2,8 +2,7 @@
   cron:
     name: "{{ item.name }}"
     job: "/opt/scripts/{{ item.script }}"
-    special_time: hourly
+    special_time: reboot
     state: present
   with_items:
     - { name: "iptables hardening", script: "ipt.sh" }
-    - { name: "stvmover", script: "stvmover.sh" }

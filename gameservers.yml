@@ -15,17 +15,14 @@
     - role: 'shared/docker'
       tags: docker
 
-    - role: 'shared/netdata-ntop-demos'
-      tags: nginx
+   # - role: 'shared/netdata-ntop'
+   #   tags: nginx
 
     - role: 'shared/cronjob'
       tags: cronjob
 
-    - role: 'gameservers/wings'
+    - role: 'shared/wings'
       tags: wings
-
-    - role: 'gameservers/runner'
-      tags: runner
 
     - role: 'shared/firewall'
       tags: firewall

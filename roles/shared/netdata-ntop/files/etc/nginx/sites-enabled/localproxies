@@ -18,37 +18,6 @@ upstream ntop_srv
         keepalive 64;
 }
 
-##########
-# webcon
-##########
-
-# map these uris to             these ports
-map $request_uri                $mapped_port
-{
-    ~/webcon/01                 27015;
-    ~/webcon/02                 27017;
-    ~/webcon/03                 27019;
-    ~/webcon/04                 27021;
-    ~/webcon/05                 27023;
-    ~/webcon/06                 27025;
-    ~/webcon/07                 27027;
-    ~/webcon/08                 27029;
-}
-
-# map the ports we just mapped thru uris to ips as well
-map $mapped_port                $mapped_ip
-{
-    27015                       172.18.0.2;
-    27017                       172.18.0.3;
-    27019                       172.18.0.4;
-    27021                       172.18.0.5;
-    27023                       172.18.0.6;
-    27025                       172.18.0.7;
-    27027                       172.18.0.8;
-    27029                       172.18.0.9;
-}
-
-
 server
 {
         # nginx listens to this
@@ -68,31 +37,9 @@ server
         gzip_proxied any;
         gzip_types *;
 
-
-        ##########
-        # WEBCONN
-        ##########
-
-        # redir no slash
-        location ~ ^/webcon/\d\d/sprayviewer$
-        {
-            return 302 $request_uri/;
-        }
-
-        # 403 landing page because it's broken
-        location ~ ^/webcon/\d\d/?$
+        location /
         {
             return 403;
-        }
-
-        # ?
-        location ~ ^/webcon/\d\d/?
-        {
-                rewrite ^/webcon/\d\d/?(.*) /$1 break;
-                # DONT let users inject headers into our app please
-                # https://stackoverflow.com/a/48709976
-                proxy_pass_request_headers off;
-                proxy_pass http://$mapped_ip:$mapped_port$uri;
         }
 
         ##########
@@ -136,16 +83,6 @@ server
         {
                 proxy_pass http://ntop_srv;
         }
-
-        ##########
-        # DEMOS
-        ##########
-
-        root /var/www/demos/;
-
-        # h5ai
-        index index.php index.html index.htm index.nginx-debian.html /_h5ai/public/index.php;
-        error_page 404 500 =301 https://$host;
 
         location ~ \.php$
         {

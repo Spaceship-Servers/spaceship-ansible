@@ -2,8 +2,11 @@ gameservers:
   children:
     na:
       hosts:
-        vin.servers.creators.tf:2222:
-        la.servers.creators.tf:2222:
-    eu:
-      hosts:
-        eu.servers.creators.tf:2222:
+#        cl1.sappho.io:2222:
+#          ansible_user: sappho
+#        192.248.182.224:2222:
+#          ansible_user: root
+#        143.244.160.215:2222:
+#          ansible_user: root
+        172.107.202.62:2222:
+          ansible_user: steph
